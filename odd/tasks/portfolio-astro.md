@@ -35,7 +35,7 @@ with its own E2E tests and CI, doubles as evidence of the owner's QA automation 
 ## Tasks
 - [x] T1 — Scaffold Astro + TS strict + Tailwind v4, scripts (`dev`, `build`, `check`, `test:e2e`). Route: delegated (writer trigger: multi-file).
 - [x] T2 — Design tokens + base layout + light/dark theme toggle. Route: delegated.
-- [ ] T3 — Content collections with full CV data (Zod schemas). Route: delegated.
+- [x] T3 — Content collections with full CV data (Zod schemas). Route: delegated.
 - [ ] T4 — Playwright setup + E2E specs for every section (RED first). Route: delegated.
 - [ ] T5 — Components and sections implementing the page (GREEN), CV download. Route: delegated.
 - [ ] T6 — GitHub Actions CI workflow (check, build, e2e). Route: delegated.
@@ -47,6 +47,7 @@ with its own E2E tests and CI, doubles as evidence of the owner's QA automation 
 - 2026-10-02: repo initialized (`a66de2e chore: initialize repository`), branch `feat/portfolio-astro` created.
 - T1 (commit: `chore: scaffold astro project with tailwind v4`): Astro 7.3.5, Tailwind 4.3.3 via `@tailwindcss/vite`, TypeScript 6.0.3 (`@astrojs/check` 0.9.10 peer range excludes TS 7). `npm run check`: 0 errors / 0 warnings / 0 hints; `npm run build`: 1 page built.
 - T2 (commit: `feat(theme): add design tokens, base layout and theme toggle`): tokens in `src/styles/tokens.css` via `@theme` (default palette dropped with `--color-*: initial`), dark override on `:root[data-theme=dark]`, no-flash inline script, persisted toggle. `npm run check`: 0 errors/0 warnings/0 hints; `npm run build`: complete; generated CSS contains `.bg-surface{background-color:var(--color-surface)}` and 0 default-palette colors.
+- T3 (commit: `feat(content): add cv content collections`): `src/content.config.ts` with `file`/`glob` loaders and `astro/zod` schemas for profile, experience (3 Markdown entries, `end: null` = current), education (3), certifications (3), skills (3 groups). Page title/description now read from the profile entry. `npm run build` (includes check): 0 errors/0 warnings/0 hints, rendered `<title>Leixer Molina | Ingeniero de Software · QA Engineer</title>`.
 
 ## Next step
 T1–T6 via one delegated writer, one work-unit commit per task.

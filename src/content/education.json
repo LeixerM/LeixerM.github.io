@@ -1,0 +1,23 @@
+[
+  {
+    "id": "uninpahu-ingenieria-software",
+    "degree": "Ingeniería de Software",
+    "institution": "UNINPAHU",
+    "year": 2024,
+    "order": 1
+  },
+  {
+    "id": "sena-tecnologo-adsi",
+    "degree": "Tecnólogo en Análisis y Desarrollo de Sistemas de Información",
+    "institution": "SENA",
+    "year": 2021,
+    "order": 2
+  },
+  {
+    "id": "sena-tecnico-programacion",
+    "degree": "Técnico en Programación de Software",
+    "institution": "SENA",
+    "year": 2017,
+    "order": 3
+  }
+]

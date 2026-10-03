@@ -1,0 +1,38 @@
+[
+  {
+    "id": "technical",
+    "label": "Técnicas",
+    "items": [
+      "Playwright",
+      "Serenity BDD",
+      "Cucumber",
+      "Java",
+      "Jenkins",
+      "Postman",
+      "SoapUI",
+      "SQL",
+      "AWS DynamoDB",
+      "Jira",
+      "Pruebas de API REST y SOAP",
+      "Pruebas móviles"
+    ],
+    "order": 1
+  },
+  {
+    "id": "professional",
+    "label": "Profesionales",
+    "items": [
+      "Trabajo en equipo",
+      "Habilidades interpersonales",
+      "Resolución de problemas",
+      "Comunicación efectiva"
+    ],
+    "order": 2
+  },
+  {
+    "id": "personal",
+    "label": "Personales",
+    "items": ["Responsable", "Detallista", "Proactivo"],
+    "order": 3
+  }
+]

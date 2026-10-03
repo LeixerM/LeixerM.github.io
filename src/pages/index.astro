@@ -1,9 +1,10 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const profile = await getEntry('profile', 'main');
+if (!profile) throw new Error('Missing profile entry "main" in src/content/profile.json');
+const { seo, displayName } = profile.data;
 ---
 
-<BaseLayout
-  title="Leixer Molina | Ingeniero de Software"
-  description="Portafolio de Leixer Molina, Ingeniero de Software."
-  brand="Leixer Molina"
-/>
+<BaseLayout title={seo.title} description={seo.description} brand={displayName} />

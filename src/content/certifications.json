@@ -1,0 +1,23 @@
+[
+  {
+    "id": "istqb-ctfl",
+    "name": "Certified Tester Foundation Level 4.0 (CTFL)",
+    "issuer": "ISTQB",
+    "year": 2024,
+    "order": 1
+  },
+  {
+    "id": "scrumstudy-sfc",
+    "name": "Scrum Fundamentals Certified",
+    "issuer": "SCRUMstudy",
+    "year": 2024,
+    "order": 2
+  },
+  {
+    "id": "copnia-tarjeta-profesional",
+    "name": "Tarjeta Profesional",
+    "issuer": "COPNIA",
+    "year": 2024,
+    "order": 3
+  }
+]
