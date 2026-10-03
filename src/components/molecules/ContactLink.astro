@@ -1,0 +1,31 @@
+---
+import Icon from '../atoms/Icon.astro';
+import type { IconName } from '../../lib/icons';
+
+interface Props {
+  href: string;
+  label: string;
+  value: string;
+  icon: IconName;
+  external?: boolean;
+}
+
+const { href, label, value, icon, external = false } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group flex items-center gap-4 rounded-card border border-border bg-surface p-5 shadow-card transition-colors hover:border-primary"
+  {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
+>
+  <span
+    class="grid size-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-on-primary"
+    aria-hidden="true"
+  >
+    <Icon name={icon} size={22} />
+  </span>
+  <span class="min-w-0">
+    <span class="block text-sm text-muted">{label}</span>
+    <span class="block truncate font-semibold text-text">{value}</span>
+  </span>
+</a>

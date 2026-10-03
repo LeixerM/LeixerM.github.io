@@ -1,10 +1,23 @@
 ---
-import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/organisms/Hero.astro';
+import ExperienceSection from '../components/organisms/ExperienceSection.astro';
+import SkillsSection from '../components/organisms/SkillsSection.astro';
+import EducationSection from '../components/organisms/EducationSection.astro';
+import CertificationsSection from '../components/organisms/CertificationsSection.astro';
+import ContactSection from '../components/organisms/ContactSection.astro';
+import SiteFooter from '../components/organisms/SiteFooter.astro';
+import { getProfile } from '../lib/content';
 
-const profile = await getEntry('profile', 'main');
-if (!profile) throw new Error('Missing profile entry "main" in src/content/profile.json');
-const { seo, displayName } = profile.data;
+const { seo, displayName } = await getProfile();
 ---
 
-<BaseLayout title={seo.title} description={seo.description} brand={displayName} />
+<BaseLayout title={seo.title} description={seo.description} brand={displayName}>
+  <Hero />
+  <ExperienceSection />
+  <SkillsSection />
+  <EducationSection />
+  <CertificationsSection />
+  <ContactSection />
+  <SiteFooter slot="footer" />
+</BaseLayout>

@@ -37,7 +37,7 @@ with its own E2E tests and CI, doubles as evidence of the owner's QA automation 
 - [x] T2 — Design tokens + base layout + light/dark theme toggle. Route: delegated.
 - [x] T3 — Content collections with full CV data (Zod schemas). Route: delegated.
 - [x] T4 — Playwright setup + E2E specs for every section (RED first). Route: delegated.
-- [ ] T5 — Components and sections implementing the page (GREEN), CV download. Route: delegated.
+- [x] T5 — Components and sections implementing the page (GREEN), CV download. Route: delegated.
 - [ ] T6 — GitHub Actions CI workflow (check, build, e2e). Route: delegated.
 
 ## Checks
@@ -49,6 +49,7 @@ with its own E2E tests and CI, doubles as evidence of the owner's QA automation 
 - T2 (commit: `feat(theme): add design tokens, base layout and theme toggle`): tokens in `src/styles/tokens.css` via `@theme` (default palette dropped with `--color-*: initial`), dark override on `:root[data-theme=dark]`, no-flash inline script, persisted toggle. `npm run check`: 0 errors/0 warnings/0 hints; `npm run build`: complete; generated CSS contains `.bg-surface{background-color:var(--color-surface)}` and 0 default-palette colors.
 - T3 (commit: `feat(content): add cv content collections`): `src/content.config.ts` with `file`/`glob` loaders and `astro/zod` schemas for profile, experience (3 Markdown entries, `end: null` = current), education (3), certifications (3), skills (3 groups). Page title/description now read from the profile entry. `npm run build` (includes check): 0 errors/0 warnings/0 hints, rendered `<title>Leixer Molina | Ingeniero de Software · QA Engineer</title>`.
 - T4 (commit: `test(e2e): add playwright specs for portfolio sections`): Playwright 1.63 (chromium only), webServer = build + `astro preview` on 127.0.0.1:4321; 21 specs in `tests/e2e/`. RED observed: `npm run test:e2e` -> 17 failed, 4 passed (SEO metadata, no console errors and both theme specs pass because T2 already shipped them). `npm run check`: 0 errors/0 warnings/0 hints.
+- T5 (commit: `feat(ui): build portfolio sections with atomic components`): atoms (Icon, Button, Tag, Avatar), molecules (SectionHeader, ExperienceCard, SkillGroup, CredentialCard, ContactLink, ThemeToggle), organisms (SiteHeader, Hero, Experience/Skills/Education/Certifications/Contact sections, SiteFooter); index composes organisms only. Fonts self-hosted via Fontsource (no external requests). CV copied to `public/cv/leixer-molina-cv.pdf`. Initials avatar (no Python available to extract the photo). GREEN observed: `npm run test:e2e` -> 21 passed; `npm run build`: 0 errors/0 warnings/0 hints. Screenshots reviewed in light/dark at desktop and mobile widths.
 
 ## Next step
 T1–T6 via one delegated writer, one work-unit commit per task.

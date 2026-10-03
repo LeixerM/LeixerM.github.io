@@ -1,0 +1,17 @@
+---
+import { getProfile } from '../../lib/content';
+
+const { displayName } = await getProfile();
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border bg-bg">
+  <div
+    class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-8 text-sm text-muted sm:flex-row sm:justify-between sm:px-6"
+  >
+    <p>© {year} {displayName}</p>
+    <p>
+      <a href="#inicio" class="font-medium hover:text-primary">Volver arriba ↑</a>
+    </p>
+  </div>
+</footer>

@@ -1,0 +1,54 @@
+---
+import Button from '../atoms/Button.astro';
+import Icon from '../atoms/Icon.astro';
+import SectionHeader from '../molecules/SectionHeader.astro';
+import ContactLink from '../molecules/ContactLink.astro';
+import { cvPath } from '../../config/site';
+import { getProfile } from '../../lib/content';
+import { toTelHref } from '../../lib/format';
+
+const { contact } = await getProfile();
+const linkedinHandle = new URL(contact.linkedin).pathname.replace(/^\/in\/|\/$/g, '');
+const githubHandle = new URL(contact.github).pathname.replace(/^\/|\/$/g, '');
+---
+
+<section id="contacto" class="scroll-mt-24 bg-surface-alt py-20 sm:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionHeader
+      eyebrow="Hablemos"
+      title="Contacto"
+      lead="¿Buscas un QA para tu equipo? Escríbeme y conversemos."
+    />
+    <ul class="grid gap-4 sm:grid-cols-2">
+      <li>
+        <ContactLink
+          href={`mailto:${contact.email}`}
+          icon="mail"
+          label="Correo"
+          value={contact.email}
+        />
+      </li>
+      <li>
+        <ContactLink href={toTelHref(contact.phone)} icon="phone" label="Teléfono" value={contact.phone} />
+      </li>
+      <li>
+        <ContactLink
+          href={contact.linkedin}
+          icon="linkedin"
+          label="LinkedIn"
+          value={linkedinHandle}
+          external
+        />
+      </li>
+      <li>
+        <ContactLink href={contact.github} icon="github" label="GitHub" value={githubHandle} external />
+      </li>
+    </ul>
+    <div class="mt-10">
+      <Button href={cvPath} download="Leixer-Molina-CV.pdf" type="application/pdf">
+        <Icon name="download" size={18} />
+        Descargar hoja de vida (PDF)
+      </Button>
+    </div>
+  </div>
+</section>

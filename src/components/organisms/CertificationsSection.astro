@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeader from '../molecules/SectionHeader.astro';
+import CredentialCard from '../molecules/CredentialCard.astro';
+import { byOrder } from '../../lib/content';
+
+const entries = (await getCollection('certifications')).sort(byOrder);
+---
+
+<section id="certificaciones" class="scroll-mt-24 py-20 sm:py-24">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionHeader eyebrow="Credenciales" title="Certificaciones" />
+    <ul class="grid gap-6 md:grid-cols-3">
+      {
+        entries.map((entry) => (
+          <li>
+            <CredentialCard
+              testId="certification"
+              icon="award"
+              title={entry.data.name}
+              subtitle={entry.data.issuer}
+              year={entry.data.year}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
