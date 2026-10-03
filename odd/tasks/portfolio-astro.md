@@ -63,5 +63,7 @@ with its own E2E tests and CI, doubles as evidence of the owner's QA automation 
 - RDD review (range bd8d3c2..91bb9e5): assessed `medium` (package-lock config), `slice_budget_reached` (497 lines); consent granted; 1 lens (reliability) → `approved`, 0 blocking; acknowledged, lineage `review-b4c40d2617cca142`, authority burned. Reviewed boundary is now `91bb9e5`. Advisory: avatar initials fallback untested (`Avatar.astro:47-50`).
 - T7 follow-up (2026-10-03, inline): `src/assets/profile.png` replaced with the user-supplied 800x800 original (was 237x191 from the PDF). `npm run build` complete (optimized `profile.*.webp` 22.7 KB); E2E against the production preview (port 4322) → 23 passed.
 
+- T7 follow-up 2 (2026-10-03, inline): background removed from the profile photo with `@imgly/background-removal-node` (installed in the session scratchpad only, not a project dependency); transparent 800x800 PNG. Checked visually in dark and light themes. `npm run build` complete; E2E on production preview (port 4322) → 23 passed.
+
 ## Next step
 All tasks done locally. Pending user decisions: add a remote, set the real `site` URL in `astro.config.mjs` (placeholder `https://leixerm.github.io`), push / PR / deploy. Photo source is only 237x191 px (as embedded in the CV); a higher-resolution original would sharpen the hero portrait.
