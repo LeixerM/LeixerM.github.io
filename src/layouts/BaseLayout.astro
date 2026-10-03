@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/organisms/SiteHeader.astro';
+import { themeStorageKey } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  brand: string;
+}
+
+const { title, description, brand } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+---
+
+<!doctype html>
+<html lang="es" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap"
+    />
+
+    <script is:inline define:vars={{ themeStorageKey }}>
+      // Applies the theme before first paint to avoid a flash of the wrong theme.
+      (function () {
+        let theme = null;
+        try {
+          theme = localStorage.getItem(themeStorageKey);
+        } catch (_) {
+          theme = null;
+        }
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body class="min-h-dvh bg-bg text-text">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-60 focus:rounded-pill focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary"
+    >
+      Saltar al contenido
+    </a>
+    <SiteHeader brand={brand} />
+    <main id="contenido">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>
