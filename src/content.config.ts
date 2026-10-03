@@ -4,23 +4,26 @@ import { z } from 'astro/zod';
 
 const profile = defineCollection({
   loader: file('src/content/profile.json'),
-  schema: z.object({
-    name: z.string(),
-    displayName: z.string(),
-    initials: z.string().max(3),
-    title: z.string(),
-    role: z.string(),
-    summary: z.string(),
-    location: z.string().optional(),
-    contact: z.object({
-      phone: z.string(),
-      email: z.email(),
-      linkedin: z.url(),
-      github: z.url(),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      displayName: z.string(),
+      initials: z.string().max(3),
+      /** Optional portrait, path relative to this JSON file; initials are shown when absent. */
+      photo: image().optional(),
+      title: z.string(),
+      role: z.string(),
+      summary: z.string(),
+      location: z.string().optional(),
+      contact: z.object({
+        phone: z.string(),
+        email: z.email(),
+        linkedin: z.url(),
+        github: z.url(),
+      }),
+      languages: z.array(z.object({ name: z.string(), level: z.string() })),
+      seo: z.object({ title: z.string(), description: z.string().max(160) }),
     }),
-    languages: z.array(z.object({ name: z.string(), level: z.string() })),
-    seo: z.object({ title: z.string(), description: z.string().max(160) }),
-  }),
 });
 
 const experience = defineCollection({

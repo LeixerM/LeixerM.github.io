@@ -23,6 +23,14 @@ test('hero shows the name as h1, a level-2 heading and the call to action button
   await expect(hero.getByRole('link', { name: /descargar cv/i })).toBeVisible();
 });
 
+test('hero shows the profile photo, fully loaded', async ({ page }) => {
+  const photo = page.locator('section#inicio').getByRole('img', { name: 'Foto de Leixer Molina' });
+  await expect(photo).toBeVisible();
+  await expect(photo).toHaveJSProperty('complete', true);
+  const naturalWidth = await photo.evaluate((img: HTMLImageElement) => img.naturalWidth);
+  expect(naturalWidth).toBeGreaterThan(0);
+});
+
 for (const { id, heading } of sections) {
   test(`section #${id} is rendered with its "${heading}" heading`, async ({ page }) => {
     const section = page.locator(`section#${id}`);

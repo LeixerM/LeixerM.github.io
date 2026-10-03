@@ -4,6 +4,7 @@
     "name": "Leixer Gabuer Molina Villalba",
     "displayName": "Leixer Molina",
     "initials": "LM",
+    "photo": "../assets/profile.png",
     "title": "Ingeniero de Software",
     "role": "QA Engineer",
     "summary": "Ingeniero de Software con certificación ISTQB. Experiencia en pruebas funcionales y automatizadas en sectores de banca, telecomunicaciones y salud. Conocimiento en análisis de requerimientos, diseño y ejecución de casos de prueba, validación de servicios REST y SOAP, consultas SQL y aseguramiento de calidad. Experiencia en pruebas UI, API y móviles, metodologías Scrum y herramientas de automatización.",
