@@ -1,56 +1,126 @@
 /*
- * Visual identity: the single source of truth for colors, typography and shape.
+ * Visual identity: the single source of truth for colors, typography, shape and atmosphere.
  * Components only use the semantic utilities generated from these tokens
- * (bg-bg, bg-surface, text-text, text-muted, text-primary, border-border, ...).
+ * (bg-bg, bg-surface, text-text, text-muted, text-primary, bg-ember, font-display, ...)
+ * plus the atmosphere utilities in global.css, which read the gradient tokens below.
  * Change the values below to re-theme the whole site.
+ *
+ * Identity: "cinematic" — near-black blue-slate night, cold steel-blue light, ember accents,
+ * condensed uppercase display type. Dark is the default theme; light is a "daylight" variant.
  */
 
 @theme {
   /* Drop Tailwind's default palette so only semantic color utilities exist. */
   --color-*: initial;
 
-  /* Light theme (default) */
-  --color-bg: #f7f8fc;
-  --color-surface: #ffffff;
-  --color-surface-alt: #eef0fb;
-  --color-text: #12142b;
-  --color-muted: #4a5068;
-  --color-primary: #4338ca;
-  --color-primary-hover: #3730a3;
-  --color-on-primary: #ffffff;
-  --color-accent: #0f766e;
-  --color-border: #dde1ef;
-  --color-ring: #6366f1;
+  /* Cinematic dark theme (default) */
+  --color-bg: #07090e;
+  --color-surface: #0e131c;
+  --color-surface-alt: #0a0e15;
+  --color-text: #f2f4f7;
+  --color-muted: #9aa6b8;
+  --color-primary: #8cc8e6;
+  --color-primary-hover: #b5dcf0;
+  --color-on-primary: #06121c;
+  --color-accent: #ff8a3d;
+  --color-ember: #ff7a1a;
+  --color-ember-hover: #ff9a4d;
+  --color-on-ember: #140a03;
+  --color-border: #8caac824;
+  --color-border-strong: #8caac85c;
+  --color-ring: #ff8a3d;
+  --color-glow-cold: #2f86c9;
+  --color-glow-ember: #ff5a0a;
+  --color-smoke: #1a2433;
 
   /* Typography */
   --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Montserrat', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Oswald', 'Arial Narrow', 'Inter Variable', ui-sans-serif, sans-serif;
+  --tracking-display: 0.06em;
+  --tracking-eyebrow: 0.32em;
 
   /* Shape */
-  --radius-card: 1rem;
+  --radius-card: 0.5rem;
+  --radius-button: 0.25rem;
   --radius-pill: 9999px;
 
-  /* Elevation */
-  --shadow-card: 0 1px 2px rgb(18 20 43 / 0.04), 0 8px 24px rgb(18 20 43 / 0.06);
+  /* Elevation and glow */
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 12px 32px rgb(0 0 0 / 0.45);
+  --shadow-glow-cold: 0 0 0 1px rgb(140 200 230 / 0.25), 0 0 32px rgb(47 134 201 / 0.28);
+  --shadow-glow-ember: 0 0 0 1px rgb(255 122 26 / 0.35), 0 8px 32px rgb(255 90 10 / 0.35);
 }
 
-/* Dark theme: overrides the same semantic tokens. */
-:root[data-theme='dark'] {
-  --color-bg: #0b0d1a;
-  --color-surface: #141729;
-  --color-surface-alt: #1c2038;
-  --color-text: #eceefb;
-  --color-muted: #a6abc6;
-  --color-primary: #a5b4fc;
-  --color-primary-hover: #c7d2fe;
-  --color-on-primary: #0b0d1a;
-  --color-accent: #5eead4;
-  --color-border: #2a2f4d;
-  --color-ring: #a5b4fc;
-  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.35);
+/* Atmosphere tokens (not utilities): consumed by the bg-atmosphere / bg-grain / bg-vignette
+ * utilities in global.css. They reference the color tokens, so each theme only swaps colors
+ * and intensities. */
+:root {
+  --glow-cold-strength: 55%;
+  --glow-ember-strength: 45%;
+  --gradient-atmosphere:
+    radial-gradient(
+      ellipse 70% 60% at 85% 15%,
+      color-mix(in oklab, var(--color-glow-cold) var(--glow-cold-strength), transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 60% 55% at 10% 100%,
+      color-mix(in oklab, var(--color-glow-ember) var(--glow-ember-strength), transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 90% 70% at 50% 40%,
+      color-mix(in oklab, var(--color-smoke) 90%, transparent),
+      transparent 80%
+    ),
+    linear-gradient(180deg, var(--color-surface-alt), var(--color-bg));
+  --gradient-vignette: radial-gradient(
+    ellipse 120% 90% at 50% 40%,
+    transparent 45%,
+    color-mix(in oklab, var(--color-bg) 85%, transparent) 100%
+  );
+  --gradient-ring: conic-gradient(
+    from 200deg,
+    var(--color-glow-cold),
+    var(--color-primary),
+    var(--color-ember),
+    var(--color-glow-cold)
+  );
+  --gradient-section: radial-gradient(
+    ellipse 60% 50% at 100% 0%,
+    color-mix(in oklab, var(--color-glow-cold) 12%, transparent),
+    transparent 70%
+  );
+  --gradient-rule: linear-gradient(90deg, var(--color-ember), transparent);
+  --texture-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-opacity: 0.09;
   color-scheme: dark;
 }
 
+/* Daylight theme: overrides the same semantic tokens with a lighter, smoky steel variant. */
 :root[data-theme='light'] {
+  --color-bg: #e9edf2;
+  --color-surface: #f7f9fb;
+  --color-surface-alt: #dfe5ec;
+  --color-text: #0b111a;
+  --color-muted: #3d4a5c;
+  --color-primary: #1d5f8a;
+  --color-primary-hover: #154766;
+  --color-on-primary: #ffffff;
+  --color-accent: #9a3c06;
+  --color-ember: #b8410c;
+  --color-ember-hover: #9a3608;
+  --color-on-ember: #ffffff;
+  --color-border: #1d3a5226;
+  --color-border-strong: #1d3a5259;
+  --color-ring: #b8410c;
+  --color-glow-cold: #6fa9d4;
+  --color-glow-ember: #ff9a5a;
+  --color-smoke: #f2f5f8;
+  --shadow-card: 0 1px 2px rgb(11 17 26 / 0.06), 0 10px 28px rgb(11 17 26 / 0.08);
+  --shadow-glow-cold: 0 0 0 1px rgb(29 95 138 / 0.3), 0 10px 30px rgb(29 95 138 / 0.18);
+  --shadow-glow-ember: 0 0 0 1px rgb(184 65 12 / 0.35), 0 8px 24px rgb(184 65 12 / 0.25);
+  --glow-cold-strength: 45%;
+  --glow-ember-strength: 35%;
+  --grain-opacity: 0.05;
   color-scheme: light;
 }

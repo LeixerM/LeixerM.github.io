@@ -14,10 +14,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 ---
 
 <!doctype html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -32,6 +33,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 
     <script is:inline define:vars={{ themeStorageKey }}>
       // Applies the theme before first paint to avoid a flash of the wrong theme.
+      // Without a stored choice the cinematic dark identity is the default.
       (function () {
         let theme = null;
         try {
@@ -40,7 +42,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
           theme = null;
         }
         if (theme !== 'light' && theme !== 'dark') {
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          theme = 'dark';
         }
         document.documentElement.dataset.theme = theme;
       })();
@@ -49,7 +51,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
   <body class="min-h-dvh bg-bg text-text">
     <a
       href="#contenido"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-60 focus:rounded-pill focus:bg-primary focus:px-4 focus:py-2 focus:text-on-primary"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-60 focus:rounded-button focus:bg-ember focus:px-4 focus:py-2 focus:text-on-ember"
     >
       Saltar al contenido
     </a>

@@ -11,15 +11,16 @@ interface Props extends HTMLAttributes<'a'> {
 const { href, variant = 'primary', class: className = '', ...rest } = Astro.props;
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-primary text-on-primary shadow-card hover:bg-primary-hover',
-  secondary: 'border border-border bg-surface text-text hover:border-primary hover:text-primary',
+  primary: 'bg-ember text-on-ember shadow-glow-ember hover:bg-ember-hover',
+  secondary:
+    'border border-border-strong bg-surface/40 text-text backdrop-blur hover:border-primary hover:text-primary hover:shadow-glow-cold',
 };
 ---
 
 <a
   href={href}
   class:list={[
-    'inline-flex items-center justify-center gap-2 rounded-pill px-5 py-3 text-sm font-semibold transition-colors',
+    'inline-flex items-center justify-center gap-2 rounded-button px-6 py-3 font-display text-sm font-semibold tracking-[0.14em] uppercase transition-[color,background-color,border-color,box-shadow]',
     variants[variant],
     className,
   ]}

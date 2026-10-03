@@ -10,8 +10,8 @@ interface Props {
 const { label, items, tone = 'neutral' } = Astro.props;
 ---
 
-<div class="rounded-card border border-border bg-surface p-6 shadow-card">
-  <h3 class="mb-4 text-lg font-bold text-text">{label}</h3>
+<div class="rounded-card border border-border bg-surface/70 p-6 shadow-card backdrop-blur-sm transition-[border-color,box-shadow] hover:border-primary/60 hover:shadow-glow-cold">
+  <h3 class="mb-4 text-lg font-semibold tracking-wider text-text uppercase">{label}</h3>
   <ul class="flex flex-wrap gap-2">
     {
       items.map((item) => (

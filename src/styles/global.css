@@ -1,11 +1,39 @@
 @import '@fontsource-variable/inter/index.css';
-@import '@fontsource/montserrat/latin-600.css';
-@import '@fontsource/montserrat/latin-700.css';
-@import '@fontsource/montserrat/latin-800.css';
+@import '@fontsource/oswald/latin-500.css';
+@import '@fontsource/oswald/latin-600.css';
+@import '@fontsource/oswald/latin-700.css';
 @import 'tailwindcss';
 @import './tokens.css';
 
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* Atmosphere utilities: thin wrappers around the gradient tokens in tokens.css. */
+@utility bg-atmosphere {
+  background-image: var(--gradient-atmosphere);
+}
+
+@utility bg-vignette {
+  background-image: var(--gradient-vignette);
+}
+
+@utility bg-grain {
+  background-image: var(--texture-grain);
+  background-size: 160px 160px;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+}
+
+@utility bg-ring-gradient {
+  background-image: var(--gradient-ring);
+}
+
+@utility bg-section-glow {
+  background-image: var(--gradient-section);
+}
+
+@utility bg-rule {
+  background-image: var(--gradient-rule);
+}
 
 @layer base {
   html {
@@ -18,7 +46,18 @@
   h1,
   h2,
   h3 {
-    font-family: var(--font-heading);
+    font-family: var(--font-display);
+  }
+
+  h1,
+  h2 {
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-display);
+  }
+
+  ::selection {
+    background-color: var(--color-ember);
+    color: var(--color-on-ember);
   }
 
   :focus-visible {

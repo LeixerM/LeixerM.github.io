@@ -9,27 +9,27 @@ interface Props {
 const { brand } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 border-b border-border bg-bg/85 backdrop-blur-md">
+<header class="sticky top-0 z-50 border-b border-border bg-bg/75 backdrop-blur-md">
   <div
     class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 sm:px-6"
   >
     <a
       href="#inicio"
-      class="font-heading text-lg font-extrabold tracking-tight text-text hover:text-primary"
+      class="font-display text-xl font-bold tracking-display text-text uppercase hover:text-primary"
     >
-      {brand}<span class="text-primary">.</span>
+      {brand}<span class="text-accent">.</span>
     </a>
     <nav
       aria-label="Secciones"
       class="order-3 -mx-4 w-full overflow-x-auto px-4 md:order-none md:mx-0 md:ml-auto md:w-auto md:px-0"
     >
-      <ul class="flex gap-1 text-sm font-medium whitespace-nowrap">
+      <ul class="flex gap-1 font-display text-sm font-medium tracking-[0.12em] whitespace-nowrap uppercase">
         {
           sections.map((section) => (
             <li>
               <a
                 href={`#${section.id}`}
-                class="block rounded-pill px-3 py-2 text-muted transition-colors hover:bg-surface-alt hover:text-text"
+                class="block rounded-button px-3 py-2 text-muted transition-colors hover:bg-surface-alt hover:text-text"
               >
                 {section.label}
               </a>

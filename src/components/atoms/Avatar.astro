@@ -7,33 +7,48 @@ interface Props {
   name: string;
   /** Portrait from the profile collection; the initials are rendered when it is missing. */
   photo?: ImageMetadata | undefined;
+  class?: string;
 }
 
-const { initials, name, photo } = Astro.props;
+const { initials, name, photo, class: className = '' } = Astro.props;
 ---
 
 <div
-  class="relative grid size-28 shrink-0 place-items-center rounded-full bg-primary font-heading text-4xl font-extrabold text-on-primary shadow-card ring-4 ring-surface sm:size-32"
+  class:list={[
+    'relative shrink-0 rounded-full bg-ring-gradient p-1 shadow-glow-ember',
+    className,
+  ]}
 >
-  {
-    photo ? (
-      <Image
-        src={photo}
-        alt={`Foto de ${name}`}
-        width={photo.width}
-        height={photo.height}
-        loading="eager"
-        fetchpriority="high"
-        class="size-full rounded-full object-cover object-top"
-      />
-    ) : (
-      <span role="img" aria-label={`Avatar de ${name}`}>
-        {initials}
-      </span>
-    )
-  }
-  <span
-    aria-hidden="true"
-    class="absolute -right-1 -bottom-1 size-7 rounded-full bg-accent ring-4 ring-surface"
-  ></span>
+  <div
+    class="relative grid size-full place-items-center overflow-hidden rounded-full bg-surface font-display text-5xl font-bold text-primary"
+  >
+    {
+      photo ? (
+        <>
+          <Image
+            src={photo}
+            alt={`Foto de ${name}`}
+            width={photo.width}
+            height={photo.height}
+            loading="eager"
+            fetchpriority="high"
+            class="size-full object-cover object-top contrast-110 saturate-[0.85]"
+          />
+          {/* Duotone-ish edge treatment: cold light from above, ember from below. */}
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-0 bg-linear-to-b from-glow-cold/35 via-transparent to-glow-ember/30 mix-blend-soft-light"
+          />
+          <span
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-0 rounded-full shadow-[inset_0_0_40px_var(--color-bg)]"
+          />
+        </>
+      ) : (
+        <span role="img" aria-label={`Avatar de ${name}`}>
+          {initials}
+        </span>
+      )
+    }
+  </div>
 </div>

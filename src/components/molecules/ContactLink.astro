@@ -15,11 +15,11 @@ const { href, label, value, icon, external = false } = Astro.props;
 
 <a
   href={href}
-  class="group flex items-center gap-4 rounded-card border border-border bg-surface p-5 shadow-card transition-colors hover:border-primary"
+  class="group flex items-center gap-4 rounded-card border border-border bg-surface/70 p-5 shadow-card backdrop-blur-sm transition-[border-color,box-shadow] hover:border-primary/60 hover:shadow-glow-cold"
   {...external ? { target: '_blank', rel: 'noopener noreferrer' } : {}}
 >
   <span
-    class="grid size-11 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-on-primary"
+    class="grid size-11 shrink-0 place-items-center rounded-button bg-primary/10 text-primary ring-1 ring-primary/25 transition-colors group-hover:bg-ember group-hover:text-on-ember group-hover:ring-ember"
     aria-hidden="true"
   >
     <Icon name={icon} size={22} />
