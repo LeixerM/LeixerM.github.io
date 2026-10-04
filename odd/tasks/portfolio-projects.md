@@ -27,6 +27,7 @@ Serenity/Karate reports; the portfolio should surface them.
 
 ## Tasks
 - [x] P1 — Projects collection + E2E specs (RED) + section/cards/nav (GREEN) + optional GitHub enrichment. Route: delegated (writer trigger: multi-file).
+- [x] P1b — User request 2026-10-04: Projects section first (right after the hero), then Experience in a summarized form (one-sentence summary + tech tags per job; full bullet list kept in content, not displayed). Route: delegated (writer trigger: multi-file).
 - [ ] P2 — After user merges the PRs: verify all report URLs return 200, merge to main, deploy, verify live. Route: inline.
 
 ## Progress / evidence
@@ -38,6 +39,9 @@ Serenity/Karate reports; the portfolio should surface them.
 - P1 docs — 9fe3480 `docs: document projects content and github enrichment`.
 - Parent spot check: `npm run test:e2e` → 30 passed. Inline fix 1b30a8e `style: restore alternating section backgrounds` (Skills/Certifications alt, Education/Contact plain) → 30 passed; computed order inicio:plain experiencia:alt proyectos:plain habilidades:alt educacion:plain certificaciones:alt contacto:plain.
 - RDD (range ae47119..1b30a8e): medium (executable change in playwright.config.ts), slice_budget_reached (467 lines); consent granted; 1 lens (reliability) → approved, 0 blocking; lineage `review-95729b5afd4ad8aa` acknowledged/burned. Advisory: GitHub enrichment module untested (`src/lib/github.ts:27-49`), date formatter untested, hardcoded test counts may drift from repos, unauthenticated API rate limit (60/h).
+- P1b RED — 20f6561 `test(e2e): expect projects first and summarized experience`: `npx playwright test` → 3 failed (full section order, nav order, experience summary/no highlights), 29 passed. Replaced the spec "projects section sits between Experiencia and Habilidades".
+- P1b GREEN — 9b722e4 `feat(experience): show projects first and summarize experience`: `summary` added to the experience schema and entries (highlights kept, not rendered); card shows role, company · project, period, summary, tech tags; tighter padding/spacing. `npm run check` → 0 errors / 0 warnings / 0 hints; `npm run build` → Complete; `npm run test:e2e` → 32 passed. Computed order inicio:plain proyectos:alt experiencia:plain habilidades:alt educacion:plain certificaciones:alt contacto:plain.
+- P1b visual: desktop 1366 dark and mobile 375 dark screenshots (hero through Experience) reviewed; Experience section 948 px tall at 1366, 1252 px at 375; timeline line and 20 px card gaps visible.
 
 ## Next step
 P2 — after the user merges the qa-repos-upgrade PRs, verify report URLs return 200, then merge/deploy.
