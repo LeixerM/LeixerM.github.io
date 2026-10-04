@@ -27,12 +27,17 @@ test('nav link "Proyectos" scrolls to #proyectos', async ({ page }) => {
   await expect(page.locator('section#proyectos').getByRole('heading', { level: 2 })).toBeInViewport();
 });
 
-test('projects section sits between Experiencia and Habilidades', async ({ page }) => {
+test('projects section comes first after the hero, followed by Experiencia', async ({ page }) => {
   const ids = await page.locator('main section[id]').evaluateAll((nodes) => nodes.map((n) => n.id));
-  const index = ids.indexOf('proyectos');
-  expect(index).toBeGreaterThan(-1);
-  expect(ids[index - 1]).toBe('experiencia');
-  expect(ids[index + 1]).toBe('habilidades');
+  expect(ids).toEqual([
+    'inicio',
+    'proyectos',
+    'experiencia',
+    'habilidades',
+    'educacion',
+    'certificaciones',
+    'contacto',
+  ]);
 });
 
 test('exactly three project cards render in collection order', async ({ page }) => {

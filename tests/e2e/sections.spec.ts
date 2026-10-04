@@ -50,6 +50,43 @@ test('every experience entry is rendered', async ({ page }) => {
   await expect(entries.first()).toContainText('Presente');
 });
 
+const experienceSummaries = [
+  {
+    company: 'SONDA',
+    summary:
+      'Pruebas funcionales y de regresión en el sector salud, con automatización en Playwright para generar datos de prueba y validar reglas de negocio.',
+    highlight: 'Pruebas orientadas a incapacidades médicas y contratos de afiliación EPS.',
+  },
+  {
+    company: 'Manpower Group',
+    summary:
+      'Automatización de pruebas con Serenity BDD, Cucumber y Jenkins para transferencias internacionales y créditos en app móvil y web, con datos de prueba vía SQL.',
+    highlight: 'Automatización con Serenity BDD, Java, Cucumber y Jenkins.',
+  },
+  {
+    company: 'SQA S.A.',
+    summary:
+      'Pruebas funcionales, de integración y de servicios REST/SOAP para banca y telecomunicaciones (Dale!, Movistar), con SQL, Jira y AWS DynamoDB.',
+    highlight: 'Participación en equipos ágiles bajo Scrum.',
+  },
+];
+
+test('each experience entry shows its summary and tech tags, not the highlights list', async ({
+  page,
+}) => {
+  const entries = page.locator('section#experiencia').getByTestId('experience-entry');
+  await expect(entries).toHaveCount(experienceSummaries.length);
+  for (const [index, { company, summary, highlight }] of experienceSummaries.entries()) {
+    const entry = entries.nth(index);
+    await expect(entry).toContainText(company);
+    await expect(entry.getByText(summary, { exact: true })).toBeVisible();
+    await expect(entry.getByRole('list', { name: 'Tecnologías' })).toBeVisible();
+    await expect(entry).not.toContainText(highlight);
+    // The only list items allowed inside a card are the tech tags.
+    await expect(entry.locator('li:not([aria-label="Tecnologías"] > li)')).toHaveCount(0);
+  }
+});
+
 test('education lists three entries', async ({ page }) => {
   await expect(page.locator('section#educacion').getByTestId('education-entry')).toHaveCount(3);
 });

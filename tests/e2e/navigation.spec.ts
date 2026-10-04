@@ -10,6 +10,23 @@ const anchors = [
 
 test.use({ reducedMotion: 'reduce' });
 
+test('nav links follow the page section order', async ({ page }) => {
+  await page.goto('/');
+  const nav = page.getByRole('navigation', { name: 'Secciones' });
+  const hrefs = await nav
+    .locator('a[href^="#"]')
+    .evaluateAll((links) => links.map((link) => link.getAttribute('href')));
+  const sectionLinks = hrefs.filter((href) => href !== '#inicio');
+  expect(sectionLinks).toEqual([
+    '#proyectos',
+    '#experiencia',
+    '#habilidades',
+    '#educacion',
+    '#certificaciones',
+    '#contacto',
+  ]);
+});
+
 for (const { label, id } of anchors) {
   test(`nav link "${label}" scrolls to #${id}`, async ({ page }) => {
     await page.goto('/');
