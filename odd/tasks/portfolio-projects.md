@@ -36,6 +36,8 @@ Serenity/Karate reports; the portfolio should surface them.
 - P1 enrichment: `PUBLIC_GITHUB_ENRICH=true npm run build` (real API) → 3 cards with "Actualizado octubre de 2026"; with `GITHUB_API_BASE=http://127.0.0.1:9` (connection refused) → build exit 0, 3 cards, 0 "Actualizado"; with `GITHUB_API_BASE=http://10.255.255.1` (blackhole, 4 s timeout) → build exit 0 in ~7 s, 0 "Actualizado".
 - P1 visual: screenshots desktop 1366 dark/light, tablet 820 dark, mobile 375 dark reviewed; horizontal overflow 0 at all widths.
 - P1 docs — 9fe3480 `docs: document projects content and github enrichment`.
+- Parent spot check: `npm run test:e2e` → 30 passed. Inline fix 1b30a8e `style: restore alternating section backgrounds` (Skills/Certifications alt, Education/Contact plain) → 30 passed; computed order inicio:plain experiencia:alt proyectos:plain habilidades:alt educacion:plain certificaciones:alt contacto:plain.
+- RDD (range ae47119..1b30a8e): medium (executable change in playwright.config.ts), slice_budget_reached (467 lines); consent granted; 1 lens (reliability) → approved, 0 blocking; lineage `review-95729b5afd4ad8aa` acknowledged/burned. Advisory: GitHub enrichment module untested (`src/lib/github.ts:27-49`), date formatter untested, hardcoded test counts may drift from repos, unauthenticated API rate limit (60/h).
 
 ## Next step
 P2 — after the user merges the qa-repos-upgrade PRs, verify report URLs return 200, then merge/deploy.
