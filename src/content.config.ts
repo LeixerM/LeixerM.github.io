@@ -37,6 +37,8 @@ const experience = defineCollection({
     /** `null` means the position is current. */
     end: z.coerce.date().nullable().default(null),
     order: z.number().int(),
+    /** One-sentence summary shown on the card; `highlights` stay in content but are not rendered. */
+    summary: z.string(),
     highlights: z.array(z.string()).min(1),
     tech: z.array(z.string()).default([]),
   }),

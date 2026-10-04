@@ -1,8 +1,8 @@
 /** UI-level configuration (navigation labels and section ids). CV data lives in src/content. */
 export const sections = [
   { id: 'inicio', label: 'Inicio' },
-  { id: 'experiencia', label: 'Experiencia' },
   { id: 'proyectos', label: 'Proyectos' },
+  { id: 'experiencia', label: 'Experiencia' },
   { id: 'habilidades', label: 'Habilidades' },
   { id: 'educacion', label: 'Educación' },
   { id: 'certificaciones', label: 'Certificaciones' },

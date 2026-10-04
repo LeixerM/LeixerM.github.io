@@ -5,6 +5,7 @@ project: Proyecto Davivienda Centroamérica
 start: 2023-09-01
 end: 2025-10-01
 order: 2
+summary: 'Automatización de pruebas con Serenity BDD, Cucumber y Jenkins para transferencias internacionales y créditos en app móvil y web, con datos de prueba vía SQL.'
 highlights:
   - Análisis de requerimientos funcionales para el diseño de casos de prueba.
   - Ejecución de pruebas funcionales, smoke, regresión e integración.

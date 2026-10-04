@@ -5,6 +5,7 @@ project: Proyecto Dale! / Proyecto Movistar
 start: 2021-06-01
 end: 2023-08-01
 order: 3
+summary: 'Pruebas funcionales, de integración y de servicios REST/SOAP para banca y telecomunicaciones (Dale!, Movistar), con SQL, Jira y AWS DynamoDB.'
 highlights:
   - Análisis de requerimientos funcionales para la definición de escenarios y casos de prueba.
   - Diseño y ejecución de pruebas funcionales, smoke, regresión e integración.

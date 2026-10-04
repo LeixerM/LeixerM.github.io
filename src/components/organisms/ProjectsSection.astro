@@ -9,7 +9,7 @@ const entries = (await getCollection('projects')).sort(byOrder);
 const infos = await Promise.all(entries.map((entry) => fetchRepoInfo(entry.data.repo)));
 ---
 
-<section id="proyectos" class="scroll-mt-24 py-20 sm:py-28">
+<section id="proyectos" class="scroll-mt-24 border-y border-border bg-surface-alt bg-section-glow py-20 sm:py-28">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <SectionHeader
       eyebrow="Evidencia"
