@@ -43,5 +43,7 @@ Serenity/Karate reports; the portfolio should surface them.
 - P1b GREEN — 9b722e4 `feat(experience): show projects first and summarize experience`: `summary` added to the experience schema and entries (highlights kept, not rendered); card shows role, company · project, period, summary, tech tags; tighter padding/spacing. `npm run check` → 0 errors / 0 warnings / 0 hints; `npm run build` → Complete; `npm run test:e2e` → 32 passed. Computed order inicio:plain proyectos:alt experiencia:plain habilidades:alt educacion:plain certificaciones:alt contacto:plain.
 - P1b visual: desktop 1366 dark and mobile 375 dark screenshots (hero through Experience) reviewed; Experience section 948 px tall at 1366, 1252 px at 375; timeline line and 20 px card gaps visible.
 
+- Parent spot check (P1b): `npm run test:e2e` → 32 passed. RDD assess (1b30a8e..HEAD, committed-only): medium (executable change in ExperienceCard.astro), 119 lines, review_due=false (`under_budget`) — stays pending in the slice until a later commit reaches the budget.
+
 ## Next step
 P2 — after the user merges the qa-repos-upgrade PRs, verify report URLs return 200, then merge/deploy.
