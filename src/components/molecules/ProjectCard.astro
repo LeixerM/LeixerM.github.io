@@ -1,0 +1,97 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Button from '../atoms/Button.astro';
+import Icon from '../atoms/Icon.astro';
+import Tag from '../atoms/Tag.astro';
+import { formatUpdated, type RepoInfo } from '../../lib/github';
+
+interface Props {
+  entry: CollectionEntry<'projects'>;
+  /** Position in the list (1-based), shown as a decorative index. */
+  index: number;
+  /** Optional build-time GitHub data; nothing is rendered for it when `null`. */
+  info?: RepoInfo | null;
+}
+
+const { entry, index, info = null } = Astro.props;
+const { title, summary, highlights, stack, tests, repo, repoUrl, reportUrl, reportLabel } = entry.data;
+const reportText = reportLabel ?? 'Ver reporte en vivo';
+const external = { target: '_blank', rel: 'noopener noreferrer' } as const;
+---
+
+<article
+  data-testid="project-card"
+  data-repo={repo}
+  class="group flex h-full flex-col rounded-card border border-border bg-surface/70 p-6 shadow-card backdrop-blur-sm transition-[border-color,box-shadow] hover:border-primary/60 hover:shadow-glow-cold sm:p-7"
+>
+  <div class="flex items-center justify-between gap-3">
+    <span aria-hidden="true" class="font-display text-sm font-semibold tracking-display text-accent">
+      {String(index).padStart(2, '0')}
+    </span>
+    <span
+      class="inline-flex items-center gap-1.5 rounded-pill bg-ember/10 px-3 py-1 text-xs font-semibold text-accent ring-1 ring-ember/30"
+    >
+      <Icon name="check" size={14} />
+      {tests} pruebas automatizadas
+    </span>
+  </div>
+
+  <h3 class="mt-4 text-xl leading-snug font-semibold tracking-wide text-text uppercase">{title}</h3>
+  <p class="mt-3 text-muted">{summary}</p>
+
+  <ul class="mt-5 space-y-2.5 text-sm text-text">
+    {
+      highlights.map((highlight) => (
+        <li class="flex gap-3">
+          <Icon name="arrowRight" size={16} class="mt-0.5 shrink-0 text-primary" />
+          <span>{highlight}</span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <ul class="mt-5 flex flex-wrap gap-2" aria-label={`Tecnologías de ${title}`}>
+    {
+      stack.map((item) => (
+        <li>
+          <Tag>{item}</Tag>
+        </li>
+      ))
+    }
+  </ul>
+
+  {
+    info && (
+      <p class="mt-5 text-xs text-muted">
+        Actualizado <time datetime={info.pushedAt.toISOString()}>{formatUpdated(info.pushedAt)}</time>
+        {info.language && <span> · {info.language}</span>}
+      </p>
+    )
+  }
+
+  <div class="mt-auto grid gap-3 pt-6">
+    <Button
+      href={repoUrl}
+      variant="secondary"
+      class="w-full"
+      aria-label={`Ver código de ${title} en GitHub (se abre en una pestaña nueva)`}
+      {...external}
+    >
+      <Icon name="github" size={16} />
+      Ver código
+    </Button>
+    {
+      reportUrl && (
+        <Button
+          href={reportUrl}
+          class="w-full"
+          aria-label={`${reportText} de ${title} (se abre en una pestaña nueva)`}
+          {...external}
+        >
+          <Icon name="globe" size={16} />
+          {reportText}
+        </Button>
+      )
+    }
+  </div>
+</article>

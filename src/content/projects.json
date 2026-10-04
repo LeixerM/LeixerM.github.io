@@ -1,0 +1,53 @@
+[
+  {
+    "id": "Proyecto_DemoBlaze_E2E",
+    "order": 1,
+    "title": "Suite E2E de UI + API sobre DemoBlaze",
+    "summary": "Automatización de extremo a extremo que combina pruebas de API con Karate y pruebas de interfaz con Serenity BDD bajo el patrón Screenplay, ejecutadas en integración continua.",
+    "highlights": [
+      "Usuario creado por API e inicio de sesión por la UI.",
+      "Validación de esquemas y mensajes de error en la API.",
+      "Reportes de Karate y Serenity publicados en GitHub Pages."
+    ],
+    "stack": ["Karate 2", "Serenity BDD", "Screenplay", "Cucumber", "Java 21", "GitHub Actions"],
+    "tests": 23,
+    "repo": "LeixerM/Proyecto_DemoBlaze_E2E",
+    "repoUrl": "https://github.com/LeixerM/Proyecto_DemoBlaze_E2E",
+    "reportUrl": "https://leixerm.github.io/Proyecto_DemoBlaze_E2E/",
+    "reportLabel": "Ver reporte en vivo"
+  },
+  {
+    "id": "Serenity_Calendar_Leixer",
+    "order": 2,
+    "title": "Datepicker data-driven con Serenity Screenplay",
+    "summary": "Pruebas guiadas por datos sobre un selector de fechas, escritas con Serenity BDD y Screenplay para que cada escenario se lea como una tarea de negocio.",
+    "highlights": [
+      "Scenario Outline con 6 casos, incluido el cambio de año.",
+      "Fechas calculadas en tiempo de ejecución, sin esperas fijas.",
+      "Verificación de regresión documentada al actualizar dependencias."
+    ],
+    "stack": ["Serenity BDD 5", "Screenplay", "Cucumber", "JUnit 6", "Java 21", "GitHub Actions"],
+    "tests": 13,
+    "repo": "LeixerM/Serenity_Calendar_Leixer",
+    "repoUrl": "https://github.com/LeixerM/Serenity_Calendar_Leixer",
+    "reportUrl": "https://leixerm.github.io/Serenity_Calendar_Leixer/",
+    "reportLabel": "Ver reporte en vivo"
+  },
+  {
+    "id": "Serenity_Ejemplo2_OrangeHRM",
+    "order": 3,
+    "title": "Gestión de empleados en OrangeHRM",
+    "summary": "Flujo completo de alta de empleados en OrangeHRM automatizado con Serenity BDD y Screenplay, con datos de prueba que se limpian solos al terminar.",
+    "highlights": [
+      "Foto de perfil verificada byte a byte (SHA-256).",
+      "Cada empleado creado se elimina por API al terminar.",
+      "CI reparado y actualización incremental 3.x → 4.x → 5.x."
+    ],
+    "stack": ["Serenity BDD 5", "Screenplay", "Cucumber", "Java 21", "GitHub Actions"],
+    "tests": 6,
+    "repo": "LeixerM/Serenity_Ejemplo2_OrangeHRM",
+    "repoUrl": "https://github.com/LeixerM/Serenity_Ejemplo2_OrangeHRM",
+    "reportUrl": "https://leixerm.github.io/Serenity_Ejemplo2_OrangeHRM/",
+    "reportLabel": "Ver reporte en vivo"
+  }
+]

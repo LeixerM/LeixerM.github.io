@@ -21,5 +21,7 @@ export default defineConfig({
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
+    // Keep the build offline-safe and deterministic: no GitHub API enrichment during E2E.
+    env: { PUBLIC_GITHUB_ENRICH: 'false' },
   },
 });

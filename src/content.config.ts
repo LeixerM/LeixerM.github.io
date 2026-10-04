@@ -71,4 +71,24 @@ const skills = defineCollection({
   }),
 });
 
-export const collections = { profile, experience, education, certifications, skills };
+const projects = defineCollection({
+  loader: file('src/content/projects.json'),
+  schema: z.object({
+    order: z.number().int(),
+    title: z.string(),
+    /** One or two sentences, Spanish. */
+    summary: z.string(),
+    highlights: z.array(z.string()).min(2).max(4),
+    stack: z.array(z.string()).min(1),
+    /** Number of automated tests in the repository. */
+    tests: z.number().int().nonnegative(),
+    /** GitHub `owner/name`; also used by the optional build-time enrichment. */
+    repo: z.string().regex(/^[\w.-]+\/[\w.-]+$/),
+    repoUrl: z.url(),
+    /** Live test report (e.g. GitHub Pages); the report button is hidden when absent. */
+    reportUrl: z.url().optional(),
+    reportLabel: z.string().optional(),
+  }),
+});
+
+export const collections = { profile, experience, education, certifications, skills, projects };

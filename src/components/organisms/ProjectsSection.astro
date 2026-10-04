@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeader from '../molecules/SectionHeader.astro';
+import ProjectCard from '../molecules/ProjectCard.astro';
+import { byOrder } from '../../lib/content';
+import { fetchRepoInfo } from '../../lib/github';
+
+const entries = (await getCollection('projects')).sort(byOrder);
+const infos = await Promise.all(entries.map((entry) => fetchRepoInfo(entry.data.repo)));
+---
+
+<section id="proyectos" class="scroll-mt-24 py-20 sm:py-28">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <SectionHeader
+      eyebrow="Evidencia"
+      title="Proyectos"
+      lead="Repositorios de automatización QA con integración continua y reportes de pruebas publicados en vivo."
+    />
+    <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        entries.map((entry, index) => (
+          <li>
+            <ProjectCard entry={entry} index={index + 1} info={infos[index]} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
