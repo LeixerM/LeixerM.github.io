@@ -61,5 +61,7 @@ Out of scope for now: Banistmo expansion, Playwright 30-day challenge, new proje
 
 - 2026-10-04 DemoBlaze PR #2 merged (user OK) → merge 3985c56; main run 37178466754 success (tests + Pages). Final state all main runs green: Calendar 37176936406, DemoBlaze 37178466754, OrangeHRM 37176943687, portfolio 37177160592. Published reports verified: Karate ALL PASSED 11/11 (0 failed); Serenity DemoBlaze 5/5 100% (generated 04:57, post-fix), Calendar 7 test cases 100%, OrangeHRM 3/3 100%; no failure/error markers.
 
+- 2026-10-04 Archive (user OK, conditional on duplication): verified docs/regression-baseline.md maps all 5 old scenarios (Demoblaze purchase; APIDemoblaze login ok/failed, signup new/duplicate) to passing scenarios in Proyecto_DemoBlaze_E2E; 0 stars/forks. Added redirect README.md (Demoblaze fc52b8b, APIDemoblaze e483dc7), set description/homepage to the new repo, archived both (isArchived=true). Reversible with gh repo unarchive.
+
 ## Next step
-Feature complete. Optional follow-ups: archive Demoblaze/APIDemoblaze with redirect README (user decision), R3 repo description, Banistmo expansion, Playwright 30-day challenge, new QA projects (banking API suite, Playwright health portal).
+Feature complete. Optional: R3 repo description, Banistmo expansion, Playwright 30-day challenge, new QA projects.
