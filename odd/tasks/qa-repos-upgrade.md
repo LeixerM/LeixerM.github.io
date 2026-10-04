@@ -57,5 +57,7 @@ Out of scope for now: Banistmo expansion, Playwright 30-day challenge, new proje
 
 - 2026-10-03 Final CI validation (user-authorized): dispatched on PR heads — Calendar run 37143145594 @85c91f8 success; DemoBlaze run 37143148578 @b08718f success; OrangeHRM run 37143151447 @fa092cb success (Pages jobs skipped on non-main by design). All 4 PRs OPEN + MERGEABLE; Regression check section present in the 3 code PRs; LeixerM README PR has no CI (N/A).
 
+- DemoBlaze flaky fix: root cause Demoblaze deleteItem() does location.reload() then rebuilds rows/total per AJAX response; RemoveFromCart waited on elements that went stale mid-read. Fix dad7d0c on branch fix/cart-removal-stale-element (WaitForAPageReload, WaitForTheCart.toListExactly, fresh reads in TheCart with CartSnapshot + 6 unit tests; assertions unchanged, no sleeps). Repro before 7/8, after 12/12; full suite api 11/11, ui 5/5 + 13 unit. PR https://github.com/LeixerM/Proyecto_DemoBlaze_E2E/pull/2 — run 37177837234 attempt 1 + 2 success (parent-verified). Awaiting user OK to merge.
+
 ## Next step
-User reviews and merges the 4 PRs (Pages reports publish on merge to main). Then: archive/redirect Demoblaze + APIDemoblaze (user decision), R3 repo description, Banistmo + Playwright challenge, portfolio Projects section.
+User OK to merge DemoBlaze PR #2, then verify main run green and report republished.
