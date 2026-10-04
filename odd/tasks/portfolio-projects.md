@@ -28,7 +28,7 @@ Serenity/Karate reports; the portfolio should surface them.
 ## Tasks
 - [x] P1 — Projects collection + E2E specs (RED) + section/cards/nav (GREEN) + optional GitHub enrichment. Route: delegated (writer trigger: multi-file).
 - [x] P1b — User request 2026-10-04: Projects section first (right after the hero), then Experience in a summarized form (one-sentence summary + tech tags per job; full bullet list kept in content, not displayed). Route: delegated (writer trigger: multi-file).
-- [ ] P2 — After user merges the PRs: verify all report URLs return 200, merge to main, deploy, verify live. Route: inline.
+- [x] P2 — After user merges the PRs: verify all report URLs return 200, merge to main, deploy, verify live. Route: inline.
 
 ## Progress / evidence
 - 2026-10-03: plan created; branch `feat/projects-section` from main @ 20d3c98.
@@ -45,5 +45,7 @@ Serenity/Karate reports; the portfolio should surface them.
 
 - Parent spot check (P1b): `npm run test:e2e` → 32 passed. RDD assess (1b30a8e..HEAD, committed-only): medium (executable change in ExperienceCard.astro), 119 lines, review_due=false (`under_budget`) — stays pending in the slice until a later commit reaches the budget.
 
+- P2 (2026-10-04): user authorized merging the 4 qa-repos-upgrade PRs; merged with merge commits (Calendar 3a72730, DemoBlaze 2e4be68, OrangeHRM a08a944, LeixerM af8939c). Main runs: Calendar 37176936406 success + Pages; OrangeHRM 37176943687 success + Pages; DemoBlaze 37176940329 FAILURE (flaky StaleElementReference in 'Removing a product…', Pages still published) → fix delegated on branch fix/cart-removal-stale-element. All report URLs 200 (Calendar, DemoBlaze root/karate/serenity, OrangeHRM). Portfolio: 32 E2E passed, main fast-forwarded to feat/projects-section (29db71d) and pushed; push again did not trigger CI → dispatched run 37177160592: build-and-test, build-pages, deploy success; live HTML contains #proyectos.
+
 ## Next step
-P2 — after the user merges the qa-repos-upgrade PRs, verify report URLs return 200, then merge/deploy.
+Merge the DemoBlaze flaky-test fix PR once green (needs user OK), then re-check the DemoBlaze report is all green. Investigate why pushes to LeixerM.github.io do not trigger the CI workflow.
