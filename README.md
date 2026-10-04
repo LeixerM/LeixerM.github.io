@@ -41,7 +41,15 @@ First E2E run: install the browser with `npx playwright install chromium`.
     SEO text
   - `experience/*.md` — one file per position (`end: null` means current)
   - `education.json`, `certifications.json`, `skills.json`
+  - `projects.json` — the "Proyectos" cards: title, summary, highlights, stack, number of automated
+    tests, GitHub `repo` (`owner/name`), `repoUrl` and the optional live report (`reportUrl`,
+    `reportLabel`). Cards render in `order`.
   - Schemas live in `src/content.config.ts`; invalid data fails the build.
+- **GitHub enrichment** (optional): at build time each project card fetches its repository from the
+  public GitHub API (no token, 4 s timeout) to show "Actualizado <mes año>" and the primary language.
+  Any failure (offline, rate limit, error) simply hides that line; the build never fails. Disable it
+  with `PUBLIC_GITHUB_ENRICH=false` (the E2E suite does this in `playwright.config.ts`).
+  `GITHUB_API_BASE` overrides the API origin, e.g. `http://127.0.0.1:9` to simulate an unreachable host.
 - **CV PDF**: `public/cv/leixer-molina-cv.pdf`.
 - **Navigation labels / section ids**: `src/config/site.ts`.
 
@@ -51,9 +59,10 @@ First E2E run: install the browser with `npx playwright install chromium`.
 src/
   components/
     atoms/       Icon, Button, Tag, Avatar
-    molecules/   SectionHeader, ExperienceCard, SkillGroup, CredentialCard, ContactLink, ThemeToggle
+    molecules/   SectionHeader, ExperienceCard, ProjectCard, SkillGroup, CredentialCard, ContactLink, ThemeToggle
     organisms/   SiteHeader, Hero, *Section, SiteFooter
   content/       CV data (content collections)
+  lib/         content helpers, formatting, icons, GitHub enrichment
   layouts/       BaseLayout (SEO, theme bootstrap)
   pages/         index.astro (composes organisms)
   styles/        tokens.css (identity), global.css
