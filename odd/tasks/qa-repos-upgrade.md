@@ -59,5 +59,7 @@ Out of scope for now: Banistmo expansion, Playwright 30-day challenge, new proje
 
 - DemoBlaze flaky fix: root cause Demoblaze deleteItem() does location.reload() then rebuilds rows/total per AJAX response; RemoveFromCart waited on elements that went stale mid-read. Fix dad7d0c on branch fix/cart-removal-stale-element (WaitForAPageReload, WaitForTheCart.toListExactly, fresh reads in TheCart with CartSnapshot + 6 unit tests; assertions unchanged, no sleeps). Repro before 7/8, after 12/12; full suite api 11/11, ui 5/5 + 13 unit. PR https://github.com/LeixerM/Proyecto_DemoBlaze_E2E/pull/2 — run 37177837234 attempt 1 + 2 success (parent-verified). Awaiting user OK to merge.
 
+- 2026-10-04 DemoBlaze PR #2 merged (user OK) → merge 3985c56; main run 37178466754 success (tests + Pages). Final state all main runs green: Calendar 37176936406, DemoBlaze 37178466754, OrangeHRM 37176943687, portfolio 37177160592. Published reports verified: Karate ALL PASSED 11/11 (0 failed); Serenity DemoBlaze 5/5 100% (generated 04:57, post-fix), Calendar 7 test cases 100%, OrangeHRM 3/3 100%; no failure/error markers.
+
 ## Next step
-User OK to merge DemoBlaze PR #2, then verify main run green and report republished.
+Feature complete. Optional follow-ups: archive Demoblaze/APIDemoblaze with redirect README (user decision), R3 repo description, Banistmo expansion, Playwright 30-day challenge, new QA projects (banking API suite, Playwright health portal).
